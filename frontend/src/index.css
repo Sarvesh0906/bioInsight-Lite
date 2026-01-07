@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base {
+  :root {
+    /* BioInsight Lite - Scientific Biotech Theme */
+    --background: 222 47% 6%;
+    --foreground: 210 40% 96%;
+
+    --card: 222 47% 8%;
+    --card-foreground: 210 40% 96%;
+
+    --popover: 222 47% 10%;
+    --popover-foreground: 210 40% 96%;
+
+    --primary: 173 80% 40%;
+    --primary-foreground: 222 47% 6%;
+
+    --secondary: 222 30% 15%;
+    --secondary-foreground: 210 40% 90%;
+
+    --muted: 222 30% 12%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 280 65% 60%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 30% 18%;
+    --input: 222 30% 15%;
+    --ring: 173 80% 40%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --success: 142 76% 36%;
+    --success-foreground: 210 40% 98%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 222 47% 6%;
+    --info: 199 89% 48%;
+    --info-foreground: 222 47% 6%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(173 80% 40%) 0%, hsl(199 89% 48%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(280 65% 60%) 0%, hsl(320 70% 50%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(222 47% 10%) 0%, hsl(222 47% 7%) 100%);
+    --gradient-glow: radial-gradient(ellipse at center, hsl(173 80% 40% / 0.15) 0%, transparent 70%);
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px hsl(222 47% 3% / 0.5);
+    --shadow-md: 0 4px 6px -1px hsl(222 47% 3% / 0.5), 0 2px 4px -2px hsl(222 47% 3% / 0.5);
+    --shadow-lg: 0 10px 15px -3px hsl(222 47% 3% / 0.5), 0 4px 6px -4px hsl(222 47% 3% / 0.5);
+    --shadow-glow: 0 0 20px hsl(173 80% 40% / 0.3);
+
+    --sidebar-background: 222 47% 7%;
+    --sidebar-foreground: 210 40% 90%;
+    --sidebar-primary: 173 80% 40%;
+    --sidebar-primary-foreground: 222 47% 6%;
+    --sidebar-accent: 222 30% 12%;
+    --sidebar-accent-foreground: 210 40% 90%;
+    --sidebar-border: 222 30% 15%;
+    --sidebar-ring: 173 80% 40%;
+
+    /* Chart colors */
+    --chart-1: 173 80% 40%;
+    --chart-2: 280 65% 60%;
+    --chart-3: 38 92% 50%;
+    --chart-4: 199 89% 48%;
+    --chart-5: 142 76% 36%;
+  }
+
+  .dark {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 96%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  code, .mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-xl;
+    box-shadow: var(--shadow-md);
+  }
+
+  .glow-border {
+    @apply relative;
+  }
+
+  .glow-border::before {
+    content: '';
+    @apply absolute -inset-px rounded-xl opacity-0 transition-opacity duration-300;
+    background: var(--gradient-primary);
+    z-index: -1;
+  }
+
+  .glow-border:hover::before {
+    @apply opacity-100;
+  }
+
+  .stat-card {
+    @apply glass-card p-6 relative overflow-hidden;
+  }
+
+  .stat-card::after {
+    content: '';
+    @apply absolute -top-1/2 -right-1/2 w-full h-full rounded-full opacity-10;
+    background: var(--gradient-glow);
+  }
+
+  .chart-container {
+    @apply glass-card p-6;
+  }
+
+  .data-table {
+    @apply w-full text-sm;
+  }
+
+  .data-table th {
+    @apply px-4 py-3 text-left font-medium text-muted-foreground uppercase tracking-wider text-xs bg-muted/50;
+  }
+
+  .data-table td {
+    @apply px-4 py-3 border-t border-border/50;
+  }
+
+  .data-table tr:hover td {
+    @apply bg-muted/30;
+  }
+
+  .pill {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .pill-active {
+    @apply bg-primary/20 text-primary;
+  }
+
+  .pill-inactive {
+    @apply bg-destructive/20 text-destructive;
+  }
+
+  .nav-link {
+    @apply flex items-center gap-3 px-4 py-2.5 rounded-lg text-muted-foreground transition-all duration-200;
+  }
+
+  .nav-link:hover {
+    @apply bg-muted/50 text-foreground;
+  }
+
+  .nav-link.active {
+    @apply bg-primary/10 text-primary;
+  }
+
+  .search-input {
+    @apply w-full bg-muted/50 border border-border/50 rounded-lg px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 transition-all duration-200;
+  }
+
+  .filter-tag {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 text-primary rounded-full text-sm font-medium;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 10px hsl(173 80% 40% / 0.3);
+    }
+    to {
+      box-shadow: 0 0 25px hsl(173 80% 40% / 0.5);
+    }
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted)) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted));
+    border-radius: 3px;
+  }
+}
