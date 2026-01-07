@@ -193,15 +193,15 @@ cd bioinsight-lite
 ```bash
 cd backend
 python -m venv venv
-venv\Scripts\activate
+source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
 # Start the backend
 uvicorn app.main:app --reload
 ```
 
-- Frontend: https://bioinsight-lite.netlify.app/
-- Backend: https://bioinsight-lite.onrender.com
+- Backend will be available at: http://127.0.0.1:8000
+- Swagger UI: http://127.0.0.1:8000/docs
 
 ### 3️⃣ Database Setup (MySQL)
 
