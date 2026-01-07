@@ -7,7 +7,6 @@ class Bioactivity(Base):
     __tablename__ = "bioactivity_ml_view"
 
     activity_id = Column(Integer, primary_key=True)
-    compound_id = Column(String)
     mw_freebase = Column(Float)
     alogp = Column(Float)
     psa = Column(Float)
@@ -15,4 +14,6 @@ class Bioactivity(Base):
     hba = Column(Integer)
     rtb = Column(Integer)
     is_active = Column(Integer)
-    target_name = Column(String)
+    compound_id = Column(String(20))
+    target_name = Column(String(200))
+
