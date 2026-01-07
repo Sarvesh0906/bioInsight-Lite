@@ -1,4 +1,5 @@
-const BASE_URL = "http://127.0.0.1:8000";
+// const BASE_URL = "http://127.0.0.1:8000";
+const BASE_URL = "https://bioinsight-lite.onrender.com"; // Replace with your deployed backend API URL
 
 /* ------------------ TYPES ------------------ */
 
@@ -7,7 +8,7 @@ export interface PredictionPayload {
   alogp: number;
   psa: number;
   hbd: number;
-  hba: number;
+  hba: number; 
   rtb: number;
 }
 
